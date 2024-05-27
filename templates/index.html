@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing Check</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 30px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        #message {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phishing Check</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="url">Enter a URL to check:</label>
+                <input type="text" class="form-control" id="url" name="url" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Check</button>
+        </form>
+        <div id="message">
+            {% if message %}
+			<div id="message" style="color: {% if message.startswith('Invalid') %}red{% elif 'phishing' in message %}red{% else %}green{% endif %}">
+				{{ message }}
+			</div>
+			{% endif %}
+        </div>
+    </div>
+</body>
+</html>
